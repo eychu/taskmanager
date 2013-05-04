@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @story.user
+%p
+  %b Title:
+  = @story.title
+%p
+  %b Description:
+  = @story.description
+%p
+  %b State:
+  = @story.state
+%p
+  %b Assign to user:
+  = @story.assign_to_user_id
+
+= link_to 'Edit', edit_story_path(@story)
+\|
+= link_to 'Back', stories_path

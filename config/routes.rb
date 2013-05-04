@@ -1,4 +1,17 @@
 Taskmanager::Application.routes.draw do
+  resources :story_comments
+
+
+  resources :stories
+
+
+  resources :users
+
+
+  get "sessions/new"
+
+  get "sessions/destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
