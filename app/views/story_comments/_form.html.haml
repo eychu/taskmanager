@@ -1,19 +1,7 @@
-= form_for @story_comment do |f|
-  - if @story_comment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@story_comment.errors.count, "error")} prohibited this story_comment from being saved:"
-      %ul
-        - @story_comment.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :story
-    = f.text_field :story
-  .field
-    = f.label :text
-    = f.text_area :text
-  .actions
-    = f.submit 'Save'
+= simple_form_for @story_comment, :html => { :class => 'form-horizontal' } do |f|
+  = f.input :user_id
+  = f.input :story_id
+  = f.input :text
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), story_comments_path, :class => 'btn'

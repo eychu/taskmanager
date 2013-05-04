@@ -1,7 +1,4 @@
-%h1 Editing story
-
-= render 'form'
-
-= link_to 'Show', @story
-\|
-= link_to 'Back', stories_path
+- model_class = Story
+.page-header
+  %h1=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human
+= render :partial => "form"
