@@ -1,10 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
 gem 'pg'
 
 
@@ -13,14 +9,19 @@ gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
+  gem 'therubyracer', :platform => :ruby
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'jquery-rails'
+gem 'twitter-bootstrap-rails'
+gem 'less-rails'
+gem 'haml-rails'
+gem 'state_machine'
+gem 'simple_form'
+gem 'ransack'
+gem 'bcrypt-ruby'
+
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -35,4 +36,4 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+# gem 'ruby-debug19', :require => 'ruby-debug'
