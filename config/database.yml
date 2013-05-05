@@ -52,8 +52,9 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  host: localhost
-  database: taskmanager
+  host: ec2-54-235-155-40.compute-1.amazonaws.com
+  database: d6fhddmmck8s6c
+  port: 5432
   pool: 5
-  username: taskuser
-  password: please
+  username: gdtgjquyrlfdfd
+  password: PSdUwtg6iZPQ7tjF44PtlPH9_g
