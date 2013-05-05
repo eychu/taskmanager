@@ -1,6 +1,9 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :email
-  = f.input :password_digest
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+.row
+  .span4.offset4.well
+    %legend Регистрация
+    = simple_form_for(@user) do |f|
+      = f.input :email, :label => false, :required => true, :autofocus => true, :input_html => {:placeholder => 'EMail', :class => 'span4'}
+      = f.input :password, :label => false, :required => true, :input_html => {:placeholder => 'Пароль', :class => 'span4'}
+      = f.input :password_confirmation, :label => false, :required => true, :input_html => {:placeholder => 'Повтор пароля', :class => 'span4'}
+      = f.button :submit, 'Зарегистрировать', :class => 'btn btn-primary btn-block'
+      = link_to 'Отмена', root_path, :class => 'btn btn-block'

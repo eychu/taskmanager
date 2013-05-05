@@ -1,0 +1,15 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.brand(href="/") TM
+      .container.nav-collapse
+        %ul.nav(class="pull-right")
+          - if authorized?
+            %li= link_to "Выход #{current_user.email}", logout_path
+          - else
+            %li= link_to 'Регистрация', signup_path
+            %li= link_to 'Вход', login_path

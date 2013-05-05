@@ -5,18 +5,18 @@ class StoryCommentsControllerTest < ActionController::TestCase
     @story_comment = story_comments(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get :index
     assert_response :success
     assert_not_nil assigns(:story_comments)
   end
 
-  test "should get new" do
+  test 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should create story_comment" do
+  test 'should create story_comment' do
     assert_difference('StoryComment.count') do
       post :create, story_comment: { text: @story_comment.text }
     end
@@ -24,22 +24,22 @@ class StoryCommentsControllerTest < ActionController::TestCase
     assert_redirected_to story_comment_path(assigns(:story_comment))
   end
 
-  test "should show story_comment" do
+  test 'should show story_comment' do
     get :show, id: @story_comment
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @story_comment
     assert_response :success
   end
 
-  test "should update story_comment" do
+  test 'should update story_comment' do
     put :update, id: @story_comment, story_comment: { text: @story_comment.text }
     assert_redirected_to story_comment_path(assigns(:story_comment))
   end
 
-  test "should destroy story_comment" do
+  test 'should destroy story_comment' do
     assert_difference('StoryComment.count', -1) do
       delete :destroy, id: @story_comment
     end

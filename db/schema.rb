@@ -13,34 +13,34 @@
 
 ActiveRecord::Schema.define(:version => 20130504180023) do
 
-  create_table "stories", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "description"
-    t.string   "state"
-    t.integer  "assign_to_user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+  create_table 'stories', :force => true do |t|
+    t.integer 'user_id'
+    t.string 'title'
+    t.text 'description'
+    t.string 'state'
+    t.integer 'assign_to_user_id'
+    t.datetime 'created_at',        :null => false
+    t.datetime 'updated_at',        :null => false
   end
 
-  add_index "stories", ["user_id"], :name => "index_stories_on_user_id"
+  add_index 'stories', ['user_id'], :name => 'index_stories_on_user_id'
 
-  create_table "story_comments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "story_id"
-    t.text     "text"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table 'story_comments', :force => true do |t|
+    t.integer 'user_id'
+    t.integer 'story_id'
+    t.text 'text'
+    t.datetime 'created_at', :null => false
+    t.datetime 'updated_at', :null => false
   end
 
-  add_index "story_comments", ["story_id"], :name => "index_story_comments_on_story_id"
-  add_index "story_comments", ["user_id"], :name => "index_story_comments_on_user_id"
+  add_index 'story_comments', ['story_id'], :name => 'index_story_comments_on_story_id'
+  add_index 'story_comments', ['user_id'], :name => 'index_story_comments_on_user_id'
 
-  create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+  create_table 'users', :force => true do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.datetime 'created_at',      :null => false
+    t.datetime 'updated_at',      :null => false
   end
 
 end
