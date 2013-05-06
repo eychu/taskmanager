@@ -1,5 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/eychu/taskmanager?branch=master)](http://travis-ci.org/eychu/taskmanager)
-[![Coverage develop status](https://coveralls.io/repos/eychu/taskmanager/badge.png?branch=develop)](https://coveralls.io/r/eychu/taskmanager/)
-[![Coverage master status](https://coveralls.io/repos/eychu/taskmanager/badge.png?branch=master)](https://coveralls.io/r/eychu/taskmanager/)
+[![Build Status](https://travis-ci.org/eychu/taskmanager.png?branch=master)](https://travis-ci.org/eychu/taskmanager)
+[![Coverage Status Develop](https://coveralls.io/repos/eychu/taskmanager/badge.png?branch=develop)](https://coveralls.io/r/eychu/taskmanager)
+[![Coverage Status Master](https://coveralls.io/repos/eychu/taskmanager/badge.png?branch=master)](https://coveralls.io/r/eychu/taskmanager)
 
 
