@@ -20,8 +20,7 @@
       <identifier-quote-string>&quot;</identifier-quote-string>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/taskmanager_test</jdbc-url>
-      <user-name>taskuser</user-name>
-      <user-password>dfdadfc6dfcfdfcbdfd9dfcf</user-password>
+      <user-name>postgres</user-name>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>
@@ -33,9 +32,9 @@
     </data-source>
     <data-source source="LOCAL" name="Rails taskmanager: production" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="fbba78a9-dc6e-44bc-9fb3-33be6c39e926">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://127.0.0.1/taskmanager</jdbc-url>
-      <user-name>taskuser</user-name>
-      <user-password>dfdadfc6dfcfdfcbdfd9dfcf</user-password>
+      <jdbc-url>jdbc:postgresql://ec2-54-235-155-40.compute-1.amazonaws.com:5432/d6fhddmmck8s6c</jdbc-url>
+      <user-name>gdtgjquyrlfdfd</user-name>
+      <user-password>dffadff9dfcedfffdfdddfdedfcddf9cdfc3dff0dffadffbdf9ddfdedfc0dfecdf9edf9edffadfdedfc6dffadfe2df93dff5dfcd</user-password>
       <libraries>
         <library>
           <url>file://$USER_HOME$/.RubyMine50/config/jdbc-drivers/postgresql-driver-license.txt</url>

@@ -46,8 +46,8 @@ test:
   host: localhost
   database: taskmanager_test
   pool: 5
-  username: taskuser
-  password: please
+  username: postgres
+  password:
 
 production:
   adapter: postgresql

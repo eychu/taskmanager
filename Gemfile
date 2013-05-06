@@ -22,6 +22,11 @@ gem 'simple_form'
 gem 'ransack'
 gem 'bcrypt-ruby'
 
+group :test do
+  gem 'rake'
+  gem 'factory_girl_rails'
+  gem 'coveralls', require: false
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
