@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Web::UsersController < Web::ApplicationController
 
   # GET /users/new
   def new

@@ -1,4 +1,4 @@
-module SessionsHelper
+module Web::SessionsHelper
 
   def authorized?
     session[:user_id] && User.exists?(session[:user_id])
