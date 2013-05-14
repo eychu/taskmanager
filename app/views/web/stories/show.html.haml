@@ -24,7 +24,7 @@
       %br
       - if owner?(@story.user) || owner?(User.find(@story.assign_to_user_id))
         - @story.state_events.each do |e|
-          = link_to e, next_state_story_path(@story,:next_state => e), :class => 'btn btn-mini'
+          = link_to e, next_state_story_path(@story,:next_state => e), :method => :put, :class => 'btn btn-mini'
     %p
       %strong= model_class.human_attribute_name(:assign_to_user_id) + ':'
       %br
@@ -43,7 +43,7 @@
         = "#{story_comment.user.email} : #{story_comment.text}"
         - if owner? story_comment.user
           =link_to content_tag(:button, raw('&times;'), :class => 'close'), story_story_comment_path(@story,story_comment), :method => :delete, :confirm => 'Delete comment?'
-    - if authorized?
+    - if signed_in?
       .form-actions
         = simple_form_for @story.story_comments.new, :url => story_story_comments_path(@story) do |f|
           = f.input :text, :as => :text, :input_html => { :cols => 50,  :rows => 3 }

@@ -20,7 +20,7 @@ gem 'haml-rails'
 gem 'state_machine'
 gem 'simple_form'
 gem 'ransack'
-gem 'bcrypt-ruby'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 group :test do
   gem 'rake'

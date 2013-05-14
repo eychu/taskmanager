@@ -1,4 +1,4 @@
-class StoryCommentsController < ApplicationController
+class Web::StoryCommentsController < Web::ApplicationController
   before_filter :require_login
   before_filter(:only => [:destroy]) { |sc| sc.require_owner StoryComment.find(params[:id]).user}
 

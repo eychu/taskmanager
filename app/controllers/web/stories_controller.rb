@@ -1,4 +1,4 @@
-class StoriesController < ApplicationController
+class Web::StoriesController < Web::ApplicationController
   before_filter :require_login, :only => [:new, :create, :destroy, :edit, :update, :next_state]
   before_filter(:only => [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
   before_filter :require_owner_or_assigned_user, :only => :next_state

@@ -8,8 +8,8 @@
       %a.brand(href="/") TM
       .container.nav-collapse
         %ul.nav(class="pull-right")
-          - if authorized?
-            %li= link_to "Выход #{current_user.email}", logout_path
+          - if signed_in?
+            %li= link_to "Выход #{current_user.email}", session_path(current_user), :method => :delete
           - else
-            %li= link_to 'Регистрация', signup_path
-            %li= link_to 'Вход', login_path
+            %li= link_to 'Регистрация', new_user_path
+            %li= link_to 'Вход', new_session_path
