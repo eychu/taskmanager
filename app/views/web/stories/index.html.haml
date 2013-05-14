@@ -37,5 +37,5 @@
               -if owner? story.user
                 = link_to t('.edit', :default => t('helpers.links.edit')), edit_story_path(story), :class => 'btn btn-mini'
                 = link_to t('.destroy', :default => t('helpers.links.destroy')), story_path(story), :method => :delete, :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
-    -if authorized?
+    -if signed_in?
       = link_to t('.new', :default => t('helpers.links.new')), new_story_path, :class => 'btn btn-primary'

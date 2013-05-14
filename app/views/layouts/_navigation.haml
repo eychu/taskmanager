@@ -8,7 +8,7 @@
       %a.brand(href="/") TM
       .container.nav-collapse
         %ul.nav(class="pull-right")
-          - if authorized?
+          - if signed_in?
             %li= link_to "Выход #{current_user.email}", session_path(current_user), :method => :delete
           - else
             %li= link_to 'Регистрация', new_user_path

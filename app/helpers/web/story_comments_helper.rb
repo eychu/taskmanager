@@ -1,2 +1,2 @@
-module StoryCommentsHelper
+module Web::StoryCommentsHelper
 end

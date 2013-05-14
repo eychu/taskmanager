@@ -1,2 +1,2 @@
-module StoriesHelper
+module Web::StoriesHelper
 end

@@ -15,7 +15,7 @@ class Web::UsersController < Web::ApplicationController
 
     respond_to do |format|
       if @user.save
-        signin @user
+        sign_in @user
         format.html { redirect_to root_path, notice: 'User was successfully created.' }
       else
         format.html { render action: 'new' }
