@@ -1,7 +1,6 @@
 class Web::ApplicationController < ApplicationController
   include Web::SessionsHelper
-
-  helper_method :current_user
+  include AuthHelper
 
   protect_from_forgery
 
@@ -10,13 +9,7 @@ class Web::ApplicationController < ApplicationController
   end
 
   def require_login
-    redirect_to root_path, :notice => 'Please login' unless authorized?
+    redirect_to root_path, :notice => 'Please login' unless signed_in?
   end
-
-  private
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if authorized?
-  end
-
 
 end
