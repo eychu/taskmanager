@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     email
-    password BCrypt::Password.create('please')
+    password 'please'
   end
 
 end

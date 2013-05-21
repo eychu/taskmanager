@@ -1,10 +1,14 @@
 class Story < ActiveRecord::Base
   belongs_to :user
+  belongs_to :assign_to_user, class_name: User
   has_many :story_comments, dependent: :destroy
 
   attr_accessible :assign_to_user_id, :description, :state, :title, :user_id
 
-  validates_presence_of :title, :user_id, :assign_to_user_id, :description
+  validates :title, presence: true
+  validates :user_id, presence: true
+  validates :assign_to_user_id, presence: true
+  validates :description, presence: true
 
   state_machine :state, initial: :new do
 
