@@ -1,6 +1,6 @@
 class Story < ActiveRecord::Base
   belongs_to :user
-  has_many :story_comments, :dependent => :destroy
+  has_many :story_comments, dependent: :destroy
 
   attr_accessible :assign_to_user_id, :description, :state, :title, :user_id
 
@@ -9,23 +9,23 @@ class Story < ActiveRecord::Base
   state_machine :state, initial: :new do
 
     event :start do
-      transition :new => :started
+      transition new: :started
     end
 
     event :finish do
-      transition :started => :finished
+      transition started: :finished
     end
 
     event :accept do
-      transition :finished => :accepted
+      transition finished: :accepted
     end
 
     event :reject do
-      transition :finished => :rejected
+      transition finished: :rejected
     end
 
     event :restart do
-      transition :rejected => :started
+      transition rejected: :started
     end
 
   end

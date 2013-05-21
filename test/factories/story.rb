@@ -4,7 +4,7 @@ FactoryGirl.define do
     assign_to_user_id { create(:user).id }
     description
     title
-    s.after(:build){ |story| story.send(:initialize_state_machines, :dynamic => :force)}
+    s.after(:build){ |story| story.send(:initialize_state_machines, dynamic: :force)}
   end
 
 end

@@ -7,7 +7,7 @@ class Web::SessionsController < Web::ApplicationController
     user = User.find_by_email(params[:sessions][:email])
     if user && user.authenticate(params[:sessions][:password])
       sign_in user
-      redirect_to root_url, :notice => 'Logged in!'
+      redirect_to root_url, notice: 'Logged in!'
     else
       flash.now.alert = 'Invalid email or password'
       render 'new'
@@ -16,6 +16,6 @@ class Web::SessionsController < Web::ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_url, :notice => 'Logged out!'
+    redirect_to root_url, notice: 'Logged out!'
   end
 end

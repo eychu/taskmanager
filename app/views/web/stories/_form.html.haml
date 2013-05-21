@@ -1,8 +1,8 @@
 = simple_form_for @story do |f|
   = f.input :title
-  = f.input :description, :as => :text, :input_html => { :cols => 30,  :rows => 5 }
-  = f.input :state, :collection => Story.state_machine.states.map(&:name), prompt: 'Select new state'
-  = f.input :assign_to_user_id, :collection => User.all, :label_method => :email , prompt: 'Select user to assign'
+  = f.input :description, as: :text, input_html: { cols: 30,  rows: 5 }
+  = f.input :state, collection: Story.state_machine.states.map(&:name), prompt: 'Select new state'
+  = f.input :assign_to_user_id, collection: User.all, label_method: :email , prompt: 'Select user to assign'
   .form-actions
-    = f.button :submit, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t('helpers.links.cancel')), stories_path, :class => 'btn'
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t('helpers.links.cancel')), stories_path, class: 'btn'
