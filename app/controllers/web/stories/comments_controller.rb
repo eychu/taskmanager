@@ -1,4 +1,4 @@
-class Web::Stories::StoryCommentsController < Web::ApplicationController
+class Web::Stories::CommentsController < Web::Stories::ApplicationController
   before_filter :require_login
 
   #FIXME как это можно улучшить?

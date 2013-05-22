@@ -9,7 +9,7 @@ Taskmanager::Application.routes.draw do
     resources :stories do
       scope module: 'stories' do
         put :next_state, on: :member
-        resources :story_comments, only: [:create, :destroy]
+        resources :comments, only: [:create, :destroy]
       end
     end
   end
