@@ -2,7 +2,7 @@
 .row
   .span6
     .page-header
-      %h1=t '.title', :default => model_class.model_name.human
+      %h1=t '.title', default: model_class.model_name.human
     %p
       %strong= model_class.human_attribute_name(:user_id) + ':'
       %br
@@ -24,16 +24,16 @@
       %br
       - if owner?(@story.user) || owner?(User.find(@story.assign_to_user_id))
         - @story.state_events.each do |e|
-          = link_to e, next_state_story_path(@story,:next_state => e), :method => :put, :class => 'btn btn-mini'
+          = link_to e, next_state_story_path(@story,next_state: e), method: :put, class: 'btn btn-mini'
     %p
       %strong= model_class.human_attribute_name(:assign_to_user_id) + ':'
       %br
       = User.find(@story.assign_to_user_id).email
     .form-actions
-      = link_to t('.back', :default => t('helpers.links.back')), stories_path, :class => 'btn'
+      = link_to t('.back', default: t('helpers.links.back')), stories_path, class: 'btn'
       - if owner? @story.user
-        = link_to t('.edit', :default => t('helpers.links.edit')), edit_story_path(@story), :class => 'btn'
-        = link_to t('.destroy', :default => t('helpers.links.destroy')), story_path(@story), :method => 'delete', :data => { :confirm => t('.confirm', :default => t('helpers.links.confirm', :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+        = link_to t('.edit', default: t('helpers.links.edit')), edit_story_path(@story), class: 'btn'
+        = link_to t('.destroy', default: t('helpers.links.destroy')), story_path(@story), method: 'delete', data: { confirm: t('.confirm', default: t('helpers.links.confirm', default: 'Are you sure?')) }, class: 'btn btn-danger'
   .span6
     .page-header
       %h1 Comments
@@ -42,11 +42,11 @@
       %p
         = "#{story_comment.user.email} : #{story_comment.text}"
         - if owner? story_comment.user
-          =link_to content_tag(:button, raw('&times;'), :class => 'close'), story_story_comment_path(@story,story_comment), :method => :delete, :confirm => 'Delete comment?'
+          =link_to content_tag(:button, raw('&times;'), class: 'close'), story_comment_path(@story,story_comment), method: :delete, confirm: 'Delete comment?'
     - if signed_in?
       .form-actions
-        = simple_form_for @story.story_comments.new, :url => story_story_comments_path(@story) do |f|
-          = f.input :text, :as => :text, :input_html => { :cols => 50,  :rows => 3 }
-          = f.button :submit, 'add comment', :class => 'btn btn-primary'
+        = simple_form_for @story.story_comments.new, url: story_comments_path(@story) do |f|
+          = f.input :text, as: :text, input_html: { cols: 50,  rows: 3 }
+          = f.button :submit, 'add comment', class: 'btn btn-primary'
 
 

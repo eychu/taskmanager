@@ -19,10 +19,8 @@ class Web::StoriesControllerTest < ActionController::TestCase
   end
 
   test 'should create story' do
-    attrs = attributes_for :story
-    assert_difference('Story.count') do
-      post :create, story:attrs
-    end
+    attrs = build_attributes :story
+    post :create, story: attrs
     assert_response :redirect
   end
 
@@ -45,9 +43,7 @@ class Web::StoriesControllerTest < ActionController::TestCase
 
   test 'should destroy story' do
     sign_in @story.user
-    assert_difference('Story.count', -1) do
-      delete :destroy, id: @story
-    end
+    delete :destroy, id: @story
     assert_response :redirect
   end
 end

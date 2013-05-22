@@ -1,7 +1,7 @@
 class Web::StoriesController < Web::ApplicationController
-  before_filter :require_login, :only => [:new, :create, :destroy, :edit, :update, :next_state]
-  before_filter(:only => [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
-  before_filter :require_owner_or_assigned_user, :only => :next_state
+  before_filter :require_login, only: [:new, :create, :destroy, :edit, :update, :next_state]
+  before_filter(only: [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
+  before_filter :require_owner_or_assigned_user, only: :next_state
 
   def next_state
     notice = 'some errors'
@@ -12,12 +12,12 @@ class Web::StoriesController < Web::ApplicationController
       notice = 'New state'
     end
 
-    redirect_to @story, :notice => notice
+    redirect_to @story, notice: notice
   end
 
   def index
     @search = Story.search(params[:q])
-    @stories = @search.result(:distinct => true)
+    @stories = @search.result(distinct: true)
   end
 
   def show
@@ -35,7 +35,9 @@ class Web::StoriesController < Web::ApplicationController
   end
 
   def create
-    @story = Story.new(params[:story].merge(:user_id => current_user.id))
+    new_story_attrs = params[:story]
+    new_story_attrs[:user_id] = current_user.id
+    @story = Story.new(new_story_attrs)
 
     if @story.save then
       redirect_to @story, notice: 'Story was successfully created.'
@@ -65,7 +67,7 @@ class Web::StoriesController < Web::ApplicationController
   private
   def require_owner_or_assigned_user
     unless current_user.in? [Story.find(params[:id]).user, User.find(Story.find(params[:id]).assign_to_user_id)]
-      redirect_to root_path, :notice => 'only for owner or assigned user'
+      redirect_to root_path, notice: 'only for owner or assigned user'
     end
   end
 

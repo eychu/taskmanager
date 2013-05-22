@@ -1,7 +1,7 @@
 .row
   .span4.offset4.well
     %legend Вход
-    = simple_form_for(:sessions, :url => sessions_path) do |f|
-      = f.input :email, :label => false, :required => true, :autofocus => true, :input_html => {:placeholder => 'EMail', :class => 'span4'}
-      = f.input :password, :label => false, :required => true, :input_html => {:placeholder => 'Пароль', :class => 'span4'}
-      = f.button :submit, 'Войти', :class => 'btn btn-primary btn-block'
+    = simple_form_for(:sessions, url: sessions_path) do |f|
+      = f.input :email, label: false, required: true, autofocus: true, input_html: {placeholder: 'EMail', class: 'span4'}
+      = f.input :password, label: false, required: true, input_html: {placeholder: 'Пароль', class: 'span4'}
+      = f.button :submit, 'Войти', class: 'btn btn-primary btn-block'
