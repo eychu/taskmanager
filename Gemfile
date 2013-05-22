@@ -21,7 +21,12 @@ gem 'state_machine'
 gem 'simple_form'
 gem 'ransack'
 gem 'bcrypt-ruby', require: 'bcrypt'
-gem 'newrelic_rpm'
+gem 'unicorn'
+gem 'airbrake'
+
+group :production do
+  gem 'newrelic_rpm'
+end
 
 group :development do
   gem 'pry-rails'
