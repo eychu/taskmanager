@@ -9,13 +9,11 @@ class Web::UsersController < Web::ApplicationController
   def create
     @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        sign_in @user
-        redirect_to root_path, notice: 'User was successfully created.'
-      else
-        render action: 'new'
-      end
+    if @user.save
+      sign_in @user
+      redirect_to root_path, notice: 'User was successfully created.'
+    else
+      render action: 'new'
     end
   end
 
