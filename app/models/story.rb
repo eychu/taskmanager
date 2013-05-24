@@ -6,8 +6,8 @@ class Story < ActiveRecord::Base
   attr_accessible :assign_to_user_id, :description, :state, :title, :user_id
 
   validates :title, presence: true
-  validates :user_id, presence: true
-  validates :assign_to_user_id, presence: true
+  validates :user, presence: true
+  validates :assign_to_user, presence: true
   validates :description, presence: true
 
   state_machine :state, initial: :new do
