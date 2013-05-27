@@ -1,28 +1,23 @@
 class Web::Stories::CommentsController < Web::Stories::ApplicationController
   before_filter :require_login
 
-  #FIXME как это можно улучшить?
-  before_filter(only: [:destroy]) { |sc| sc.require_owner StoryComment.find(params[:id]).user}
-
   def create
-    new_comment_params = params[:story_comment]
-    new_comment_params[:user_id] = current_user.id
-    new_comment_params[:story_id] = params[:story_id]
 
-    @story_comment = StoryComment.new(new_comment_params)
+    @comment = current_story.story_comments.build(params[:story_comment])
+    @comment.user = current_user
 
-      if @story_comment.save
+    if @comment.save
       redirect_to @comment.story, notice: t('story_comment.save_success')
-      else
+    else
       redirect_to request.referer, alert: t('story_comment.save_error')
-      end
+    end
   end
 
   def destroy
-    @story_comment = StoryComment.find(params[:id])
-    @story_comment.destroy
+    @comment = current_user.story_comments.find(params[:id])
+    @comment.destroy
 
-    redirect_to story_path(@story_comment.story)
+    redirect_to story_path(@comment.story)
 
   end
 
