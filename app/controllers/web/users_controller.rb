@@ -11,7 +11,7 @@ class Web::UsersController < Web::ApplicationController
 
     if @user.save
       sign_in @user
-      redirect_to root_path, notice: 'User was successfully created.'
+      redirect_to root_path, notice: t('user.created')
     else
       render action: 'new'
     end

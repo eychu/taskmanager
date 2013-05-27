@@ -4,12 +4,12 @@ class Web::StoriesController < Web::ApplicationController
   before_filter :require_owner_or_assigned_user, only: :next_state
 
   def next_state
-    notice = 'some errors'
+    notice = t('story.next_stage.error')
     @story = Story.find(params[:id])
     state = params[:next_state]
     if @story && state.to_sym.in?(@story.state_events)
       @story.fire_state_event(state)
-      notice = 'New state'
+      notice = t('story.next_stage.success')
     end
 
     redirect_to @story, notice: notice
@@ -40,7 +40,7 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.new(new_story_attrs)
 
     if @story.save then
-      redirect_to @story, notice: 'Story was successfully created.'
+      redirect_to @story, notice: t('story.created')
     else
       render action: 'new'
     end
@@ -50,7 +50,7 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.find(params[:id])
 
     if @story.update_attributes(params[:story])
-      redirect_to @story, notice: 'Story was successfully updated.'
+      redirect_to @story, notice: t('story.updated')
     else
       render action: 'edit'
     end
@@ -67,7 +67,7 @@ class Web::StoriesController < Web::ApplicationController
   private
   def require_owner_or_assigned_user
     unless current_user.in? [Story.find(params[:id]).user, User.find(Story.find(params[:id]).assign_to_user_id)]
-      redirect_to root_path, notice: 'only for owner or assigned user'
+      redirect_to root_path, notice: t('story.only_for_owner_or_assigned_user')
     end
   end
 

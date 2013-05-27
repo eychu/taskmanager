@@ -12,9 +12,9 @@ class Web::Stories::CommentsController < Web::Stories::ApplicationController
     @story_comment = StoryComment.new(new_comment_params)
 
       if @story_comment.save
-        redirect_to @story_comment.story, notice: 'Story comment was successfully created.'
+      redirect_to @comment.story, notice: t('story_comment.save_success')
       else
-        redirect_to request.referer
+      redirect_to request.referer, alert: t('story_comment.save_error')
       end
   end
 
