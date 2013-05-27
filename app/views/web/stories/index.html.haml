@@ -31,7 +31,7 @@
             %td= link_to story.title, story_path(story)
             %td= story.description
             %td= story.state
-            %td= User.find(story.assign_to_user_id).email
+            %td= story.assign_to_user.email
             %td=l story.created_at
             %td
               -if owner? story.user

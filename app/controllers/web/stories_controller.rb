@@ -66,7 +66,8 @@ class Web::StoriesController < Web::ApplicationController
 
   private
   def require_owner_or_assigned_user
-    unless current_user.in? [Story.find(params[:id]).user, User.find(Story.find(params[:id]).assign_to_user_id)]
+    story = Story.find(params[:id])
+    unless current_user.in? [story.user, story.assign_to_user]
       redirect_to root_path, notice: t('story.only_for_owner_or_assigned_user')
     end
   end

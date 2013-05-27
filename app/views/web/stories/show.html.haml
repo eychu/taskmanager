@@ -22,13 +22,13 @@
       %br
       change to (only for owner and assigned user):
       %br
-      - if owner?(@story.user) || owner?(User.find(@story.assign_to_user_id))
+      - if owner?(@story.user) || owner?(@story.assign_to_user)
         - @story.state_events.each do |e|
           = link_to e, next_state_story_path(@story,next_state: e), method: :put, class: 'btn btn-mini'
     %p
-      %strong= model_class.human_attribute_name(:assign_to_user_id) + ':'
+      %strong= model_class.human_attribute_name(:assign_to_user) + ':'
       %br
-      = User.find(@story.assign_to_user_id).email
+      = @story.assign_to_user.email
     .form-actions
       = link_to t('.back', default: t('helpers.links.back')), stories_path, class: 'btn'
       - if owner? @story.user
