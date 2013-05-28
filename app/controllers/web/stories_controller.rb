@@ -8,7 +8,7 @@ class Web::StoriesController < Web::ApplicationController
 
     @story = Story.find(params[:id])
     event = params[:event]
-    if @story && event.to_sym.in?(@story.state_events)
+    if @story
       @story.fire_state_event(event)
       flash_success
     else
