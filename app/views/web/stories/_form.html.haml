@@ -1,7 +1,6 @@
 = simple_form_for @story do |f|
   = f.input :title
   = f.input :description, as: :text, input_html: { cols: 30,  rows: 5 }
-  = f.input :state, collection: Story.state_machine.states.map(&:name), prompt: t('story.select_new_state')
   = f.association :assign_to_user, label_method: :email , prompt: t('story.select_user')
   .form-actions
     = f.button :submit, class: 'btn btn-primary'

@@ -2,9 +2,9 @@ require 'test_helper'
 
 class Web::StoriesControllerTest < ActionController::TestCase
   setup do
-    @user = create :user
-    sign_in @user
     @story = create :story
+    @user = @story.user
+    sign_in @user
   end
 
   test 'should get index' do
@@ -20,8 +20,12 @@ class Web::StoriesControllerTest < ActionController::TestCase
 
   test 'should create story' do
     attrs = build_attributes :story
+    attrs.delete(:state)
     post :create, story: attrs
+
     assert_response :redirect
+    story = Story.last
+    assert story
   end
 
   test 'should show story' do
@@ -37,13 +41,16 @@ class Web::StoriesControllerTest < ActionController::TestCase
 
   test 'should update story' do
     attrs = attributes_for :story
-    put :update, id: @story, story: attrs
+    put :update, id: @story.id, story: attrs
     assert_response :redirect
+    story = Story.find_by_title attrs[:title]
+    assert story
   end
 
   test 'should destroy story' do
     sign_in @story.user
     delete :destroy, id: @story
     assert_response :redirect
+    assert !Story.exists?(@story)
   end
 end
