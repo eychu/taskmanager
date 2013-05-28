@@ -23,7 +23,7 @@
       %br
       - if owner?(@story.user) || owner?(@story.assign_to_user)
         - @story.state_events.each do |e|
-          = link_to e, next_state_story_path(@story,next_state: e), method: :put, class: 'btn btn-mini'
+          = link_to e, next_state_story_path(@story, event: e), method: :put, class: 'btn btn-mini'
     %p
       %strong= Story.human_attribute_name(:assign_to_user) + ':'
       %br

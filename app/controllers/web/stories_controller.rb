@@ -7,9 +7,9 @@ class Web::StoriesController < Web::ApplicationController
     return unless owner_or_assigned_user?
 
     @story = Story.find(params[:id])
-    state = params[:next_state]
-    if @story && state.to_sym.in?(@story.state_events)
-      @story.fire_state_event(state)
+    event = params[:event]
+    if @story && event.to_sym.in?(@story.state_events)
+      @story.fire_state_event(event)
       flash_success
     else
       flash_error
