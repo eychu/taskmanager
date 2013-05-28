@@ -6,15 +6,16 @@ class Web::StoriesController < Web::ApplicationController
 
     return unless owner_or_assigned_user?
 
-    notice = t('story.next_stage.error')
     @story = Story.find(params[:id])
     state = params[:next_state]
     if @story && state.to_sym.in?(@story.state_events)
       @story.fire_state_event(state)
-      notice = t('story.next_stage.success')
+      flash_success
+    else
+      flash_error
     end
 
-    redirect_to @story, notice: notice
+    redirect_to @story
   end
 
   def index
@@ -41,9 +42,11 @@ class Web::StoriesController < Web::ApplicationController
     new_story_attrs[:user_id] = current_user.id
     @story = Story.new(new_story_attrs)
 
-    if @story.save then
-      redirect_to @story, notice: t('story.created')
+    if @story.save
+      flash_success
+      redirect_to @story
     else
+      flash_error
       render action: 'new'
     end
   end
@@ -52,8 +55,10 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.find(params[:id])
 
     if @story.update_attributes(params[:story])
-      redirect_to @story, notice: t('story.updated')
+      flash_success
+      redirect_to @story
     else
+      flash_error
       render action: 'edit'
     end
   end
@@ -62,6 +67,7 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.find(params[:id])
     @story.destroy
 
+    flash_success
     redirect_to stories_url
 
   end

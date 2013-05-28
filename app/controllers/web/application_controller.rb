@@ -1,6 +1,6 @@
 class Web::ApplicationController < ApplicationController
   include Web::SessionsHelper
-  include AuthHelper
+  include FlashHelper
 
   protect_from_forgery
 

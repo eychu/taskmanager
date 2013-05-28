@@ -3,24 +3,10 @@ en:
   only_owner: "Only owner"
   please_login: "Please login"
   story_comment:
-    save_success: "Story comment was successfully created."
-    save_error: "Comment not created"
     delete_question: "Delete comment?"
   story:
-    next_stage:
-      error: "some errors"
-      success: "New state"
-    only_for_owner_or_assigned_user: "only for owner or assigned user"
-    created: "Story was successfully created."
-    updated: "Story was successfully updated."
     select_new_state: "Select new state"
     select_user: "Select user to assign"
-  session:
-    logged_in: "Logged in!"
-    logged_out: "Logged out!"
-    invalid_auth: "Invalid email or password"
-  user:
-    created: "User was successfully created."
   sign_out: "Sign out"
   sign_in: "Sign in"
   registration: "Registration"
