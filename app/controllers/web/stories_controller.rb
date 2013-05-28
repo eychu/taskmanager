@@ -1,9 +1,11 @@
 class Web::StoriesController < Web::ApplicationController
   before_filter :require_login, only: [:new, :create, :destroy, :edit, :update, :next_state]
   before_filter(only: [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
-  before_filter :require_owner_or_assigned_user, only: :next_state
 
   def next_state
+
+    return unless owner_or_assigned_user?
+
     notice = t('story.next_stage.error')
     @story = Story.find(params[:id])
     state = params[:next_state]
@@ -65,11 +67,9 @@ class Web::StoriesController < Web::ApplicationController
   end
 
   private
-  def require_owner_or_assigned_user
+  def owner_or_assigned_user?
     story = Story.find(params[:id])
-    unless current_user.in? [story.user, story.assign_to_user]
-      redirect_to root_path, notice: t('story.only_for_owner_or_assigned_user')
-    end
+    current_user.in? [story.user, story.assign_to_user]
   end
 
 end
