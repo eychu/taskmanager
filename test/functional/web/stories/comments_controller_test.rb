@@ -15,7 +15,7 @@ class Web::Stories::CommentsControllerTest < ActionController::TestCase
     post :create, @params.merge(story_comment: attrs)
 
     assert_response :redirect
-    comment = StoryComment.last
+    comment = Story::Comment.find_by_text attrs[:text]
     assert comment
   end
 
@@ -23,6 +23,6 @@ class Web::Stories::CommentsControllerTest < ActionController::TestCase
     delete :destroy, @params.merge(id: @comment)
 
     assert_response :redirect
-    assert !StoryComment.exists?(@comment)
+    assert !Story::Comment.exists?(@comment)
   end
 end

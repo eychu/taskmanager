@@ -1,10 +1,11 @@
-class StoryComment < ActiveRecord::Base
-  belongs_to :user
+class Story::Comment < ActiveRecord::Base
+
   belongs_to :story
-  attr_accessible :text, :user_id, :story_id
+  belongs_to :user
+
+  attr_accessible :text
 
   validates :user, presence: true
   validates :story, presence: true
   validates :text, presence: true
-
 end
