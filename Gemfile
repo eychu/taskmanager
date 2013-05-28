@@ -30,6 +30,7 @@ end
 
 group :development do
   gem 'pry-rails'
+  gem 'tconsole'
 end
 
 group :test do

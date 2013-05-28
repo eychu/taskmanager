@@ -3,18 +3,20 @@ class Web::Stories::CommentsController < Web::Stories::ApplicationController
 
   def create
 
-    @comment = current_story.story_comments.build(params[:story_comment])
+    @comment = current_story.comments.build(params[:story_comment])
     @comment.user = current_user
 
     if @comment.save
-      redirect_to @comment.story, notice: t('story_comment.save_success')
+      flash_success
+      redirect_to @comment.story
     else
-      redirect_to request.referer, alert: t('story_comment.save_error')
+      flash_error
+      redirect_to request.referer
     end
   end
 
   def destroy
-    @comment = current_user.story_comments.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
     @comment.destroy
 
     redirect_to story_path(@comment.story)

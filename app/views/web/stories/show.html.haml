@@ -1,34 +1,33 @@
-- model_class = Story
 .row
   .span6
     .page-header
-      %h1=t '.title', default: model_class.model_name.human
+      %h1=t '.title'
     %p
-      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %strong= Story.human_attribute_name(:user_id) + ':'
       %br
       = @story.user.email
     %p
-      %strong= model_class.human_attribute_name(:title) + ':'
+      %strong= Story.human_attribute_name(:title) + ':'
       %br
       = @story.title
     %p
-      %strong= model_class.human_attribute_name(:description) + ':'
+      %strong= Story.human_attribute_name(:description) + ':'
       %br
       = @story.description
     %p
-      %strong= model_class.human_attribute_name(:state) + ':'
+      %strong= Story.human_attribute_name(:state) + ':'
       %br
       = @story.state
       %br
       change to (only for owner and assigned user):
       %br
-      - if owner?(@story.user) || owner?(User.find(@story.assign_to_user_id))
+      - if owner?(@story.user) || owner?(@story.assign_to_user)
         - @story.state_events.each do |e|
-          = link_to e, next_state_story_path(@story,next_state: e), method: :put, class: 'btn btn-mini'
+          = link_to e, next_state_story_path(@story, event: e), method: :put, class: 'btn btn-mini'
     %p
-      %strong= model_class.human_attribute_name(:assign_to_user_id) + ':'
+      %strong= Story.human_attribute_name(:assign_to_user) + ':'
       %br
-      = User.find(@story.assign_to_user_id).email
+      = @story.assign_to_user.email
     .form-actions
       = link_to t('.back', default: t('helpers.links.back')), stories_path, class: 'btn'
       - if owner? @story.user
@@ -38,14 +37,14 @@
     .page-header
       %h1 Comments
 
-    - @story.story_comments.each do |story_comment|
+    - @story.comments.each do |story_comment|
       %p
         = "#{story_comment.user.email} : #{story_comment.text}"
         - if owner? story_comment.user
           =link_to content_tag(:button, raw('&times;'), class: 'close'), story_comment_path(@story,story_comment), method: :delete, confirm: t('story_comment.delete_question')
     - if signed_in?
       .form-actions
-        = simple_form_for @story.story_comments.new, url: story_comments_path(@story) do |f|
+        = simple_form_for @story.comments.new, url: story_comments_path(@story) do |f|
           = f.input :text, as: :text, input_html: { cols: 50,  rows: 3 }
           = f.button :submit, 'add comment', class: 'btn btn-primary'
 

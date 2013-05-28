@@ -3,22 +3,26 @@ require 'test_helper'
 class Web::Stories::CommentsControllerTest < ActionController::TestCase
 
   setup do
-    @user = create :user
-    sign_in @user
     @story = create :story
     @comment = create :story_comment
+    @user = @comment.user
+    sign_in @user
+    @params = {story_id: @story.id}
   end
 
   test 'should create comment' do
     attrs = attributes_for :story_comment
-    post :create, story_comment: attrs, story_id: @story
+    post :create, @params.merge(story_comment: attrs)
+
     assert_response :redirect
+    comment = Story::Comment.find_by_text attrs[:text]
+    assert comment
   end
 
-  #TODO сделать правильную проверку после редиректа во всех подобных местах
   test 'should destroy comment' do
-    sign_in @comment.user
-    delete :destroy, id: @comment, story_id: @story
+    delete :destroy, @params.merge(id: @comment)
+
     assert_response :redirect
+    assert !Story::Comment.exists?(@comment)
   end
 end

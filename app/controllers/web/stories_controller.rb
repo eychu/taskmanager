@@ -1,18 +1,21 @@
 class Web::StoriesController < Web::ApplicationController
   before_filter :require_login, only: [:new, :create, :destroy, :edit, :update, :next_state]
   before_filter(only: [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
-  before_filter :require_owner_or_assigned_user, only: :next_state
 
   def next_state
-    notice = t('story.next_stage.error')
+
+    return unless owner_or_assigned_user?
+
     @story = Story.find(params[:id])
-    state = params[:next_state]
-    if @story && state.to_sym.in?(@story.state_events)
-      @story.fire_state_event(state)
-      notice = t('story.next_stage.success')
+    event = params[:event]
+    if @story
+      @story.fire_state_event(event)
+      flash_success
+    else
+      flash_error
     end
 
-    redirect_to @story, notice: notice
+    redirect_to @story
   end
 
   def index
@@ -39,9 +42,11 @@ class Web::StoriesController < Web::ApplicationController
     new_story_attrs[:user_id] = current_user.id
     @story = Story.new(new_story_attrs)
 
-    if @story.save then
-      redirect_to @story, notice: t('story.created')
+    if @story.save
+      flash_success
+      redirect_to @story
     else
+      flash_error
       render action: 'new'
     end
   end
@@ -50,8 +55,10 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.find(params[:id])
 
     if @story.update_attributes(params[:story])
-      redirect_to @story, notice: t('story.updated')
+      flash_success
+      redirect_to @story
     else
+      flash_error
       render action: 'edit'
     end
   end
@@ -60,15 +67,15 @@ class Web::StoriesController < Web::ApplicationController
     @story = Story.find(params[:id])
     @story.destroy
 
+    flash_success
     redirect_to stories_url
 
   end
 
   private
-  def require_owner_or_assigned_user
-    unless current_user.in? [Story.find(params[:id]).user, User.find(Story.find(params[:id]).assign_to_user_id)]
-      redirect_to root_path, notice: t('story.only_for_owner_or_assigned_user')
-    end
+  def owner_or_assigned_user?
+    story = Story.find(params[:id])
+    current_user.in? [story.user, story.assign_to_user]
   end
 
 end

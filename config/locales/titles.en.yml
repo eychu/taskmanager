@@ -1,0 +1,15 @@
+---
+en:
+  web:
+    stories:
+      edit:
+        title: "Edit Story"
+      index:
+        title: "Stories"
+      new:
+        title: "New Story"
+      show:
+        title: "Show Story"
+    users:
+      new:
+        title: "New User"
