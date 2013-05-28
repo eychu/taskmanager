@@ -2,10 +2,19 @@ en:
   flash:
     controllers:
       web:
+
+        sessions:
+          create:
+            success: 'Logged in!'
+            error: 'Invalid email or password'
+          destroy:
+            success: 'Logged out!'
+
         users:
           create:
             success: 'User was successfully created.'
             error:   'User NOT created.'
+
         stories:
           create:
             success: 'Story was successfully created.'
@@ -18,3 +27,9 @@ en:
             error:   'Story NOT destroyed.'
           next_state:
             success: 'Story stage was successfully set.'
+            error:   'Story stage error.'
+
+          comments:
+            create:
+              success: 'Comment was successfully created.'
+              error:   'Comment NOT created.'
