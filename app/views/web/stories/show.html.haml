@@ -1,22 +1,21 @@
-- model_class = Story
 .row
   .span6
     .page-header
-      %h1=t '.title', default: model_class.model_name.human
+      %h1=t '.title'
     %p
-      %strong= model_class.human_attribute_name(:user_id) + ':'
+      %strong= Story.human_attribute_name(:user_id) + ':'
       %br
       = @story.user.email
     %p
-      %strong= model_class.human_attribute_name(:title) + ':'
+      %strong= Story.human_attribute_name(:title) + ':'
       %br
       = @story.title
     %p
-      %strong= model_class.human_attribute_name(:description) + ':'
+      %strong= Story.human_attribute_name(:description) + ':'
       %br
       = @story.description
     %p
-      %strong= model_class.human_attribute_name(:state) + ':'
+      %strong= Story.human_attribute_name(:state) + ':'
       %br
       = @story.state
       %br
@@ -26,7 +25,7 @@
         - @story.state_events.each do |e|
           = link_to e, next_state_story_path(@story,next_state: e), method: :put, class: 'btn btn-mini'
     %p
-      %strong= model_class.human_attribute_name(:assign_to_user) + ':'
+      %strong= Story.human_attribute_name(:assign_to_user) + ':'
       %br
       = @story.assign_to_user.email
     .form-actions

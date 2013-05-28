@@ -3,8 +3,8 @@
     %legend
       = t(:registration)
     = simple_form_for(@user) do |f|
-      = f.input :email, label: false, required: true, autofocus: true, input_html: {placeholder: t(:email), class: 'span4'}
-      = f.input :password, label: false, required: true, input_html: {placeholder: t(:password), class: 'span4'}
-      = f.input :password_confirmation, label: false, required: true, input_html: {placeholder: t(:password_conformation), class: 'span4'}
-      = f.button :submit, t(:ok), class: 'btn btn-primary btn-block'
-      = link_to t(:cancel), root_path, class: 'btn btn-block'
+      = f.input :email, label: false, required: true, autofocus: true, input_html: {placeholder: t('email'), class: 'span4'}
+      = f.input :password, label: false, required: true, input_html: {placeholder: t('password'), class: 'span4'}
+      = f.input :password_confirmation, label: false, required: true, input_html: {placeholder: t('password_conformation'), class: 'span4'}
+      = f.button :submit, t('ok'), class: 'btn btn-primary btn-block'
+      = link_to t('cancel'), root_path, class: 'btn btn-block'
