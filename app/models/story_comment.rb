@@ -3,6 +3,8 @@ class StoryComment < ActiveRecord::Base
   belongs_to :story
   attr_accessible :text, :user_id, :story_id
 
-  validates_presence_of :user, :story, :text
+  validates :user, presence: true
+  validates :story, presence: true
+  validates :text, presence: true
 
 end
