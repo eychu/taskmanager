@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :story_comment, :class => 'Story::Comment' do
+  factory 'story/comment' do
     user
     story
     text

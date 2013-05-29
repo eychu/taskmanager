@@ -1,19 +1,13 @@
 class Web::StoriesController < Web::ApplicationController
   before_filter :require_login, only: [:new, :create, :destroy, :edit, :update, :next_state]
-  before_filter(only: [:destroy, :edit, :update]) { |s| require_owner Story.find(params[:id]).user }
 
   def next_state
 
     return unless owner_or_assigned_user?
 
     @story = Story.find(params[:id])
-    event = params[:event]
-    if @story
-      @story.fire_state_event(event)
-      flash_success
-    else
-      flash_error
-    end
+    @story.fire_state_event(params[:event])
+    flash_success
 
     redirect_to @story
   end
@@ -34,13 +28,11 @@ class Web::StoriesController < Web::ApplicationController
   end
 
   def edit
-    @story = Story.find(params[:id])
+    @story = current_user.stories.find(params[:id])
   end
 
   def create
-    new_story_attrs = params[:story]
-    new_story_attrs[:user_id] = current_user.id
-    @story = Story.new(new_story_attrs)
+    @story =  current_user.stories.build params[:story]
 
     if @story.save
       flash_success
@@ -52,8 +44,7 @@ class Web::StoriesController < Web::ApplicationController
   end
 
   def update
-    @story = Story.find(params[:id])
-
+    @story = current_user.stories.find(params[:id])
     if @story.update_attributes(params[:story])
       flash_success
       redirect_to @story
@@ -64,7 +55,7 @@ class Web::StoriesController < Web::ApplicationController
   end
 
   def destroy
-    @story = Story.find(params[:id])
+    @story = current_user.stories.find(params[:id])
     @story.destroy
 
     flash_success

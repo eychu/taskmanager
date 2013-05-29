@@ -4,14 +4,14 @@ class Web::Stories::CommentsControllerTest < ActionController::TestCase
 
   setup do
     @story = create :story
-    @comment = create :story_comment
+    @comment = create 'story/comment'
     @user = @comment.user
     sign_in @user
     @params = {story_id: @story.id}
   end
 
   test 'should create comment' do
-    attrs = attributes_for :story_comment
+    attrs = attributes_for 'story/comment'
     post :create, @params.merge(story_comment: attrs)
 
     assert_response :redirect
