@@ -7,6 +7,11 @@ class Web::StoriesControllerTest < ActionController::TestCase
     sign_in @user
   end
 
+  test 'should change state' do
+    put :next_state, id: @story, event: @story.state_events.first
+    assert_response :redirect
+  end
+
   test 'should get index' do
     get :index
     assert_response :success

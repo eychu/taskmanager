@@ -13,7 +13,7 @@ class Web::UsersControllerTest < ActionController::TestCase
   test 'should create user' do
     attrs = attributes_for :user
 
-    post :create, user: attrs
+    post :create, user_sign_in_type: attrs
 
     assert_response :redirect
     user = User.find_by_email(attrs[:email])

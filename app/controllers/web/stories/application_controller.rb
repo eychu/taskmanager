@@ -1,4 +1,4 @@
-class Web::Stories::ApplicationController < Web::ApplicationController
+class Web::Stories::ApplicationController < Web::ProtectedApplicationController
 
   helper_method :current_story
 

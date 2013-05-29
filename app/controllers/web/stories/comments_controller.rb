@@ -1,5 +1,4 @@
 class Web::Stories::CommentsController < Web::Stories::ApplicationController
-  before_filter :require_login
 
   def create
 

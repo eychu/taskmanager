@@ -16,4 +16,10 @@ module AuthHelper
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
+  def authenticate_user!
+    unless signed_in?
+      redirect_to new_session_path, notice: t('please_login')
+    end
+  end
+
 end

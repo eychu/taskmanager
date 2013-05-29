@@ -44,7 +44,7 @@
           =link_to content_tag(:button, raw('&times;'), class: 'close'), story_comment_path(@story,story_comment), method: :delete, confirm: t('story_comment.delete_question')
     - if signed_in?
       .form-actions
-        = simple_form_for @story.comments.new, url: story_comments_path(@story) do |f|
+        = simple_form_for @story.comments.build, url: story_comments_path(@story) do |f|
           = f.input :text, as: :text, input_html: { cols: 50,  rows: 3 }
           = f.button :submit, 'add comment', class: 'btn btn-primary'
 
