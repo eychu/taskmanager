@@ -7,8 +7,8 @@ Taskmanager::Application.routes.draw do
     resources :users, only: [:new, :create]
 
     resources :stories do
-      scope module: 'stories' do
-        put :next_state, on: :member
+      put :next_state, on: :member
+      scope module: :stories do
         resources :comments, only: [:create, :destroy]
       end
     end
