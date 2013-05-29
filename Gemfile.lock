@@ -33,6 +33,7 @@ GEM
       builder
       json
     arel (3.0.2)
+    backports (2.6.7)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
     chattyproc (1.0.0)
@@ -52,6 +53,7 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
+    descendants_tracker (0.0.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -177,6 +179,12 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    validates (0.0.8)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    virtus (0.5.4)
+      backports (~> 2.6.1)
+      descendants_tracker (~> 0.0.1)
 
 PLATFORMS
   ruby
@@ -204,3 +212,5 @@ DEPENDENCIES
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   unicorn
+  validates
+  virtus

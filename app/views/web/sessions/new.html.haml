@@ -2,7 +2,7 @@
   .span4.offset4.well
     %legend
       = t('sign_in')
-    = simple_form_for(:sessions, url: sessions_path) do |f|
+    = simple_form_for @type, url: sessions_path do |f|
       = f.input :email, label: false, required: true, autofocus: true, input_html: {placeholder: t('email'), class: 'span4'}
       = f.input :password, label: false, required: true, input_html: {placeholder: t('password'), class: 'span4'}
       = f.button :submit, t(:sign_in), class: 'btn btn-primary btn-block'

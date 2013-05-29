@@ -23,6 +23,8 @@ gem 'ransack'
 gem 'bcrypt-ruby', require: 'bcrypt'
 gem 'unicorn'
 gem 'airbrake'
+gem 'virtus'
+gem 'validates'
 
 group :production do
   gem 'newrelic_rpm'
