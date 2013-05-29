@@ -1,5 +1,5 @@
-class Web::StoriesController < Web::ApplicationController
-  before_filter :require_login, only: [:new, :create, :destroy, :edit, :update, :next_state]
+class Web::StoriesController < Web::ProtectedApplicationController
+  skip_before_filter :authenticate_user!, :only => [:index, :show]
 
   def next_state
 
